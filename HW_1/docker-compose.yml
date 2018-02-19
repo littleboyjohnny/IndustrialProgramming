@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+
+  consumer:
+    build: ./consumer
+    links:
+      - rabbit
+    environment:
+      - SERVICE_HOST=rabbit
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+
+  rabbit:
+    build: ./rabbitmq
+    ports:
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15672"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    
