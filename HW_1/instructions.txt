@@ -1,0 +1,5 @@
+producer:
+	sudo docker build -t alka/prod
+	sudo docker run -P --rm -i --name prod --net=hw1_default alka/prod
+others:
+	sudo docker-compose up --build
