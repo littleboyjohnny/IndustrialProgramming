@@ -1,0 +1,9 @@
+<h1>Todo</h1>
+<a href="add">Add Todo</a>
+<hr />
+{%for x in items %}
+<p>{{ x.title }} - {{ x.created_at|date:"D d M Y" }}</p>
+
+<p>{{ x.text }}</p>
+<hr />
+{% endfor %}
